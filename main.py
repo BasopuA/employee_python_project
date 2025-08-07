@@ -14,12 +14,6 @@ from fastapi.responses import HTMLResponse
 # Initialize the FastAPI application
 app = api.FastAPI()
 
-@app.get('/abc',response_class=HTMLResponse)
-async def abc():
-    name = 'sambo'
-    return f'<button>{5+6}</button>'
-
-
 @app.get("/home")
 async def employeeDetails():
     """
