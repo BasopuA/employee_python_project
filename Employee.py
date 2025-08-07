@@ -25,13 +25,13 @@ class Employee:
             employee_number (int): A unique identifier for the employee.
             organisation (str): The name of the employee's organization.
         """
-        self.first_name = first_name
-        self.last_name = last_name
-        self.email = email
-        self.title = title
-        self.role = role
-        self.employee_number = employee_number
-        self.organisation = organisation
+                "Title: ":self.title,
+                "name: " :self.first_name,
+                "Surname: ":self.last_name,
+                "Email: ":self.email,
+                "Organisation: ": self.organisation,
+                "Employee ID": self.employee_number,
+                "Role: ": self.role
 
     def __str__(self):
         """
