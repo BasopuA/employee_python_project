@@ -37,10 +37,11 @@ class Employee:
 
     def __str__(self):
         """
-        Returns a string representation of the Employee object.
+        Returns
+            str: a string representation of the Employee object.
 
         Returns:
-            str: A formatted string with the employee's details.
+            dict: A formatted string with the employee's details.
         """
         return {
             "Title: ": self.title,
