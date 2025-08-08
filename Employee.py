@@ -38,6 +38,8 @@ class Employee:
     def __str__(self):
         """
             This function returns a python dictional of an employee information.
+        Returns:
+            dict: A formatted string with the employee's details.
         """
         return {
             "Title: ": self.title,
