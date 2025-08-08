@@ -12,7 +12,9 @@ class Employee:
         organization (str): The name of the organization the employee works for.
     """
 
-    def __init__(self, first_name, last_name, email, title, role, employee_number, organisation):
+    def __init__(
+        self, first_name, last_name, email, title, role, employee_number, organisation
+    ):
         """
         Initializes an Employee instance with the provided attributes.
 
@@ -40,10 +42,12 @@ class Employee:
         Returns:
             str: A formatted string with the employee's details.
         """
-        return {"name: " :self.first_name,
-                "Surname: ":self.last_name,
-                "Email: ":self.email,
-                "Employee ID": self.employee_number,
-                "Title: ":self.title,
-                "Role: ": self.role,
-                "Organisation: ": self.organisation}
+        return {
+            "Title: ": self.title,
+            "name: ": self.first_name,
+            "Surname: ": self.last_name,
+            "Email: ": self.email,
+            "Organisation: ": self.organisation,
+            "Employee ID": self.employee_number,
+            "Role: ": self.role,
+        }
