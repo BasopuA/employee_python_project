@@ -20,7 +20,7 @@ The project uses:
 ## How to Run
 
 1. Make sure Python is installed  
-2. Install FastAPI and Uvicorn :from the requirements.txt file
+2. Install FastAPI, Uvicorn and black :from the requirements.txt file
 
 
 
