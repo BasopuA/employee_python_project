@@ -9,7 +9,6 @@ import fastapi as api
 import uvicorn
 
 from employee import Employee
-from fastapi.responses import HTMLResponse
 
 # Initialize the FastAPI application
 app = api.FastAPI()
@@ -41,4 +40,10 @@ async def employeeDetails():
 
 
 if __name__ == '__main__':
+    """
+    This block ensures that the FastAPI application runs only when the script is executed directly.
+
+    It starts the Uvicorn server with the `app` instance. If this script is imported as a module 
+    in another script, this block will not execute, preventing the server from starting automatically.
+    """
     uvicorn.run(app)
