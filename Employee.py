@@ -13,7 +13,7 @@ class Employee:
     """
 
     def __init__(
-        self, first_name, last_name, email, title, role, employee_number, organisation
+        self, first_name: str, last_name: str, email: str, title: str, role: str, employee_number: int, organisation: str
     ):
         """
         Initializes an Employee instance with the provided attributes.
