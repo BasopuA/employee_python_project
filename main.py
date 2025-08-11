@@ -13,10 +13,10 @@ from employee import Employee
 # Initialize the FastAPI application
 app = api.FastAPI()
 
-@app.get("/home")
+@app.get("/employee-details")
 async def employeeDetails():
     """
-    GET /home endpoint
+    GET /employee-details endpoint
 
     Returns:
         dict: A dictionary containing employee information.
@@ -26,7 +26,7 @@ async def employeeDetails():
         and returns its string representation as a dictionary.
         Useful for testing or demonstration purposes.
     """
-    emp = Employee(
+    employee = Employee(
         'Lungile',
         'Sambo',
         'sambolungile7@gmail.com',
@@ -36,7 +36,7 @@ async def employeeDetails():
         'SARAO'
     )
 
-    return emp.__str__()
+    return employee.get_employee_details()
 
 
 if __name__ == '__main__':
