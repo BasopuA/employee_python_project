@@ -35,7 +35,7 @@ class Employee:
         self.employee_number = employee_number
         self.organisation = organisation
 
-    def __str__(self):
+    def get_employee_details(self):
         """
             This function returns a python dictional of an employee information.
         Returns:
