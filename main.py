@@ -14,7 +14,7 @@ from employee import Employee
 app = api.FastAPI()
 
 @app.get("/employee-details")
-async def employeeDetails():
+async def employee_details():
     """
     GET /employee-details endpoint
 
