@@ -26,7 +26,7 @@ async def employeeDetails():
         and returns its string representation as a dictionary.
         Useful for testing or demonstration purposes.
     """
-    employee = Employee(
+    employee : Employee = Employee(
         'Lungile',
         'Sambo',
         'sambolungile7@gmail.com',
