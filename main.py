@@ -44,16 +44,13 @@ async def employee_details():
             role="SARAO"
         )
         return employee
-    except:
+    except ValueError:
         return {"error": "Please verify the information you provided."}
 
 
 if __name__ == '__main__':
-    """
-    Entry point for running the application.
-
-    When this script is executed directly, it starts a Uvicorn ASGI server
-    to run the FastAPI application. This block prevents the server from
-    running when the module is imported elsewhere.
-    """
+    # Entry point for running the application.
+    # When this script is executed directly, it starts a Uvicorn ASGI server
+    # to run the FastAPI application. This block prevents the server from
+    # running when the module is imported elsewhere.
     uvicorn.run(app)
