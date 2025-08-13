@@ -50,13 +50,13 @@ class Employee:
         """
 
         details = {
-            "Title: ": self.title,
-            "name: ": self.first_name,
-            "Surname: ": self.last_name,
-            "Email: ": self.email,
-            "Organisation: ": self.organisation,
-            "Employee ID": self.employee_number,
-            "Role: ": self.role,
+            "title": self.title,
+            "name": self.first_name,
+            "surname": self.last_name,
+            "email": self.email,
+            "organisation_name": self.organisation,
+            "employee_number": self.employee_number,
+            "role": self.role,
         }
 
         return details
