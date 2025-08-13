@@ -44,7 +44,7 @@ async def employee_details():
             role="SARAO"
         )
         return employee
-    except:
+    except ValueError:
         return {"error": "Please verify the information you provided."}
 
 
