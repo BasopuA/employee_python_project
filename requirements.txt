@@ -1,3 +1,6 @@
 fastapi
 uvicorn
 black
+pylint
+pydantic
+
