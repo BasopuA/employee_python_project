@@ -36,10 +36,10 @@ async def employee_details():
     try:
         employee: Employee = Employee(
             title="Miss",
-            name="Lungile",
-            surname="Sambo",
+            first_name="Lungile",
+            last_name="Sambo",
             email="sambolungile7@gmail.com",
-            organisation_name="Software Engineer",
+            organisation="Software Engineer",
             employee_number=111,
             role="SARAO"
         )
