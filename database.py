@@ -1,27 +1,3 @@
-"""
-Database Configuration Module for Employee Management System.
-
-This module configures the database connection, session management,
-and base model for the SQLAlchemy ORM and async database operations
-using `databases`.
-
-It sets up:
-- A synchronous SQLAlchemy engine for ORM operations.
-- A session factory (SessionLocal) for database transactions.
-- An async database instance using `databases.Database` for async queries.
-- A declarative base class for model definitions.
-
-Environment Variable:
-    DATABASE_URL: The database connection URL. If not provided,
-    defaults to a local PostgreSQL URL with predefined credentials.
-    Special characters in passwords (e.g., @) should be URL-encoded
-    (e.g., %40).
-
-Note:
-    The asyncpg driver is removed from the dialect when creating the
-    SQLAlchemy engine, since SQLAlchemy core does not support asyncpg
-    directly in sync mode.
-"""
 
 import os
 from sqlalchemy.ext.declarative import declarative_base
