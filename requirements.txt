@@ -3,4 +3,8 @@ uvicorn
 black
 pylint
 pydantic
+asyncpg
+databases
+sqlalchemy
+
 
