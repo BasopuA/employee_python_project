@@ -6,11 +6,12 @@ class EmployeeDB(Base):
     """
     Database model for the 'employees' table.
     Attributes:
-        id (int): Primary key.
+        id (int): Primary key. this key will not have to provide it will 
+        automatically be created.
         first_name (str): Employee's first name.
          last_name (str): Employee's last name.
         title (str): Employee's title.
-        organisation (str): Name of the organization the employee belongs to.
+        organisation (str): Name of the organisation the employee belongs to.
         role (str): Job title of the employee.
         email (str): Employee’s email address.
 
@@ -21,7 +22,7 @@ class EmployeeDB(Base):
 
     __tablename__ = "employees"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     first_name = Column(String, index=True)
     last_name = Column(String, index=True)
     title = Column(String)
