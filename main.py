@@ -52,7 +52,7 @@ def get_db():
         yield db
     finally:
         db.close()
-
+############################################################
 
 @app.get("/employee-details/")
 async def employee_details(db: Session = Depends(get_db)):
@@ -71,7 +71,7 @@ async def employee_details(db: Session = Depends(get_db)):
             detail=f"Error retrieving employees: {str(e)}",
         ) from e
 
-
+###################################################################
 @app.post("/employee-create/")
 async def employee_create(employee: Employee, db: Session = Depends(get_db)):
     """
@@ -104,7 +104,7 @@ async def employee_create(employee: Employee, db: Session = Depends(get_db)):
 
     return {"Message": "New employee has been created successfully."}
 
-
+###################################################################
 if __name__ == "__main__":
     """
     Entry point for running the FastAPI application with Uvicorn.
