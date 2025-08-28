@@ -1,0 +1,37 @@
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+virtualenv/
+pip-selfcheck.json
+.pytest_cache
+.coverage
+*.cover
+.hypothesis/
+
+# FastAPI / Uvicorn
+.uvicorn
+*.log
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker
+docker-compose.override.yml
+compose.yaml
+compose.yml
+
+# OS
+.DS_Store
+Thumbs.db
