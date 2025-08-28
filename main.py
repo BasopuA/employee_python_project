@@ -83,7 +83,6 @@ async def employee_create(employee: Employee, db: Session = Depends(get_db)):
         Success message or raises HTTP 400 on integrity error.
     """
     db_employee = EmployeeDB(
-        id=employee.id,
         first_name=employee.first_name,
         last_name=employee.last_name,
         email=employee.email,
@@ -100,7 +99,7 @@ async def employee_create(employee: Employee, db: Session = Depends(get_db)):
         db.rollback()
         raise HTTPException(
             status_code=400,
-            detail="Employee already exists or your email is incorrect (anele@gmail.com)",
+            detail="Employee already exists or your email is incorrect (example@email.com)",
         )
 
     return {"Message": "New employee has been created successfully."}
