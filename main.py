@@ -16,7 +16,7 @@ from sqlalchemy.orm import Session
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 from employee import Employee
-from employee_db import EmployeeDB, Base
+from employee_db import EmployeeDB, Base, OrganisationDB, RoleDB
 from database import database, engine, SessionLocal
 
 # Create tables
@@ -97,25 +97,54 @@ async def employee_create(employee: Employee, db: Session = Depends(get_db)):
     Returns:
         Success message or raises HTTP 400 on integrity error.
     """
+    org = db.query(OrganisationDB).filter(OrganisationDB.org_name == employee.organisation).first()
+    if not org:
+        org = OrganisationDB(org_name=employee.organisation)
+        db.add(org)
+        db.commit()
+        db.refresh(org)
+
+    role = db.query(RoleDB).filter(RoleDB.role_name == employee.role, RoleDB.organisation_id == org.id).first()
+    if not role:
+        role = RoleDB(role_name=employee.role, organisation_id=org.id)
+        db.add(role)
+        db.commit()
+        db.refresh(role)
+
+
     db_employee = EmployeeDB(
         first_name=employee.first_name,
         last_name=employee.last_name,
         email=employee.email,
         title=employee.title,
-        role=employee.role,
+        role_id=role.id,
         employee_number=employee.employee_number,
-        organisation=employee.organisation,
+        organisation_id=org.id,
     )
+
+    if employee.employee_number <= 0:
+        raise HTTPException(
+            status_code=400,
+            detail="Employee number must be a positive integer."
+        )
+    if len(str(employee.employee_number)) != 4:
+        raise HTTPException(
+            status_code=400,
+            detail="Employee number must be exactly 4 digits long."
+        )
+
     try:
         db.add(db_employee)
         db.commit()
         db.refresh(db_employee)
-    except IntegrityError:
+    except IntegrityError as e:
         db.rollback()
-        raise HTTPException(
-            status_code=400,
-            detail="Employee already exists or your email is incorrect (example@email.com)",
-        )
+        if 'email' in str(e).lower() or 'unique constraint' in str(e).lower():
+            raise HTTPException(status_code=400, detail="Email already registered.")
+        elif 'employee_number' in str(e).lower():
+            raise HTTPException(status_code=400, detail="Employee number already taken.")
+        else:
+            raise HTTPException(status_code=400, detail="Integrity error: duplicate or invalid data.")
 
     return {"Message": "New employee has been created successfully."}
 

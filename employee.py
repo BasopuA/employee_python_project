@@ -1,10 +1,6 @@
 
 from fastapi import FastAPI
-from pydantic import BaseModel, EmailStr
-
-
-app = FastAPI()
-
+from pydantic import BaseModel, EmailStr, Field, field_validator
 
 class Employee(BaseModel):
     """
@@ -21,9 +17,10 @@ class Employee(BaseModel):
         title (str): Job title or position (e.g., 'Software Engineer').
         role (str): Functional or system role (e.g., 'Admin', 'Developer').
         employee_number (int): Unique numeric identifier assigned to the
-        employee. organisation (str): Name of the organization the employee
+        employee. organisation (str): Name of the organisation the employee
         belongs to.
     """
+
 
     first_name: str
     last_name: str
@@ -32,3 +29,13 @@ class Employee(BaseModel):
     role: str
     employee_number: int
     organisation: str
+
+    @field_validator("employee_number")
+    def validate_employee_number(cls, v):
+        if v <= 0:
+            raise ValueError("Employee number must be positive.")
+        if not (1000 <= v <= 9999):
+            raise ValueError("Employee number must be exactly 4 digits.")
+        return v
+
+    model_config = {"extra": "forbid"}

@@ -1,32 +1,35 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
 from database import Base
 
+class OrganisationDB(Base):
+    __tablename__ = "organisation"
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    org_name = Column(String, index=True)
+
+    roles = relationship("RoleDB", back_populates="organisation", cascade="all, delete-orphan")
+    employees = relationship("EmployeeDB", back_populates="organisation_rel", cascade="all, delete-orphan")
+
+class RoleDB(Base):
+    __tablename__ = "role"
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    role_name = Column(String, index=True)
+    organisation_id = Column(Integer, ForeignKey("organisation.id"))
+
+    organisation = relationship("OrganisationDB", back_populates="roles")
+    employees = relationship("EmployeeDB", back_populates="role_rel", cascade="all, delete-orphan")
 
 class EmployeeDB(Base):
-    """
-    Database model for the 'employees' table.
-    Attributes:
-        id (int): Primary key. this key will not have to provide it will 
-        automatically be created.
-        first_name (str): Employee's first name.
-         last_name (str): Employee's last name.
-        title (str): Employee's title.
-        organisation (str): Name of the organisation the employee belongs to.
-        role (str): Job title of the employee.
-        email (str): Employee’s email address.
-
-    Table:
-        employees: Stores employee records with unique constraints on email and
-        employee_number.
-    """
-
-    __tablename__ = "employees"
-
+    __tablename__ = "employees"  # plural!
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     first_name = Column(String, index=True)
     last_name = Column(String, index=True)
     title = Column(String)
-    organisation = Column(String)
-    employee_number = Column(Integer, unique=True, index=True)
-    role = Column(String)
     email = Column(String, unique=True, index=True)
+    employee_number = Column(Integer, unique=True, index=True, nullable=False)
+
+    organisation_id = Column(Integer, ForeignKey("organisation.id"))
+    role_id = Column(Integer, ForeignKey("role.id"))
+
+    organisation_rel = relationship("OrganisationDB", back_populates="employees")
+    role_rel = relationship("RoleDB", back_populates="employees")

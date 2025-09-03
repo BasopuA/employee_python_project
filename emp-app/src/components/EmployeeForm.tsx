@@ -10,7 +10,7 @@ interface Props {
 /**
  * EmployeeForm Component
  *
- * A controlled form for creating new employees.
+ * A controlled form for employee-create creating new employees.
  * - Captures employee details (first name, last name, email, title, role, etc.)
  * - Sends data to the backend API using `createEmployee`.
  * - Displays success or error messages.
